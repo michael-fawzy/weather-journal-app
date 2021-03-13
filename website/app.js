@@ -19,15 +19,14 @@ document.getElementById('generate').addEventListener('click', performAction);
 function performAction(e){
 	const newZip =  document.getElementById('zip').value;
 	const feelings =  document.getElementById('feelings').value;
-
 	getCity(baseURL,newZip, apiKey)
 
 		.then(function(data) {
 			console.log(data);
 			//Add data to POST request
 			postData('/add', {date:d, temp:data.list[0].main.temp, content:feelings})
+			updateUI(); // Don't follow the instructor. If placed in a separate .then statement outside the .then(function), the UI will need a couple of clicks to update
 		})
-		.then(updateUI());
 };
 
 /* Function to GET Web API Data*/
